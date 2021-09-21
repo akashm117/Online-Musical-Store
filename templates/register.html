@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    th{color:pink}
+</style>
+<body>
+{% include 'header.html' %}
+<div>
+    {% for m in messages %}
+    <h2 style="color:red">{{m}}</h2>
+    {% endfor %}
+</div>
+<br><br>
+<form action="register" method="post">
+    {% csrf_token %}
+    <table  border="2" cellpadding="15" cellspacing="15">
+        <tr>
+            <th> FirstName</th>
+            <td><input type="text" name="fname"></td>
+        </tr>
+        <tr>
+            <th> LastName</th>
+            <td><input type="text" name="lname"></td>
+        </tr>
+        <tr>
+            <th> UserName</th>
+            <td><input type="text" name="uname"></td>
+        </tr>
+        <tr>
+            <th> EmailID</th>
+            <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td><input type="password" name="pass1"></td>
+        </tr>
+        <tr>
+            <th>Confirm Password</th>
+            <td><input type="password" name="pass2"></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2" ><input type="submit" value="Register"></td>
+            <td><input type="reset" value="Cancel"></td>
+
+        </tr>
+    </table>
+</form>
+<br><br>
+{% include 'footer.html' %}
+</body>
+</html>

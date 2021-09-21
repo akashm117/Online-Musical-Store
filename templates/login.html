@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'header.html' %}
+<div>
+    {% for m in messages %}
+    <h2 style="color:red">{{m}}</h2>
+    {% endfor %}
+</div>
+<br><br>
+<form action="login" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>UserName</th>
+            <td><input type="text" name="username"></td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Login"></td>
+            <td> <input type="reset" value="Clear"></td>
+        </tr>
+
+    </table>
+</form>
+<br><br>
+{% include 'footer.html' %}
+</body>
+</html>

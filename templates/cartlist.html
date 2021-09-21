@@ -1,0 +1,36 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="cartlist" method="post">
+  {% csrf_token %}
+  <table border="2" cellspacing="20" cellpadding="20">
+    <tr>
+      <th>CartId</th>
+      <th>InstrumentName</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Action</th>
+    </tr>
+    {% for i in cr %}
+    <tr>
+      <td>{{i.id}}</td>
+      <td>{{i.instrument.name}}</td>
+      <td>{{i.instrument.price}}</td>
+      <td><input type="number" name="qty" value="1" ></td>
+      <td><a href=" ">Delete</a></td>
+
+
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="4"><input type="submit" value="Place Order"></td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>

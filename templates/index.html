@@ -1,0 +1,84 @@
+{% load static %}
+{% static 'images' as baseurl %}
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>OlineMusicalStore</title>
+		<link href=" {% static 'css/style.css' %}" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href=" {% static 'css/responsiveslides.css' %}">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src=" {% static 'js/responsiveslides.min.js' %}"></script>
+		  <script>
+		    "$(window).load(function() {"
+			    $(function () {
+			
+
+			      $("#slider1").responsiveSlides({
+			        maxwidth: 1600,
+			        speed: 600
+			      });
+			});
+		  </script>
+	</head>
+	<body>
+		<!---start-wrap--->
+		<div class="wrap">
+			{% include 'header.html' %}
+			{% if totalbill > 0 %}
+			<div>
+				<h2 style="color:red">Order Placed Successfully! Your Total Bill is :- {{totalbill}}</h2>
+			</div>
+			{% endif %}
+			<div>
+				{% for m in messages %}
+				<h3 style="color:pink">{{m}}</h3>
+				{% endfor %}
+			</div>
+				<!--start-image-slider---->
+					<div class="image-slider">
+						<!-- Slideshow 1 -->
+					    <ul class="rslides" id="slider1">
+					      <li><img src=" {% static 'images/slider1.jpg' %}" alt=""></li>
+					      <li><img src=" {% static 'images/slider2.jpg' %}" alt=""></li>
+					      <li><img src=" {% static 'images/slider6.jpg' %}" alt=""></li>
+					    </ul>
+						 <!-- Slideshow 2 -->
+					</div>
+					<!--End-image-slider---->
+				<div class="content">
+					<div class="products-box">
+					<div class="products">
+						<h5><span>FEATURED</span> PRODUCTS</h5>
+						<div class="section group">
+							{% for i in it %}
+							<div class="grid_1_of_5 images_1_of_5">
+								 <img src="{{i.image.url}}" height="200PX" width="200PX">
+								 <h3>{{i.name}}</h3>
+								 <p>{{i.desc}}</p>
+								 <h4>{{i.price}}</h4>
+								{% if user.is_authenticated %}
+							     <div class="button"><span><a href="{% url 'cartapp:addtocart' i.id %}">Add To Cart</a></span></div>
+								{% endif %}
+						   </div>
+                            {% endfor %}
+
+						<div class="clear"> </div>
+					</div>
+
+
+
+
+						<div class="clear"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="clear"> </div>
+		{% include 'footer.html' %}
+		</div>
+		<!---End-wrap--->
+	</body>
+</html>
+
